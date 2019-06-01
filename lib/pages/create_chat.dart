@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// import 'package:firebase_database/firebase_database.dart';
+
 
 class CreateChat extends StatefulWidget {
   CreateChat({Key key}) : super(key: key);
@@ -10,6 +12,7 @@ class _CreateChatState extends State<CreateChat> {
   GlobalKey _formKey = GlobalKey<FormState>();
   final _nameChatController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

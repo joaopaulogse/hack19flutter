@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hack19flutter/pages/chat_page.dart';
 
 import 'create_chat.dart';
 
 class ChatList extends StatefulWidget {
   String _name;
-  ChatList({Key key, String name}) : _name = name, super(key: key);
+  ChatList({Key key, String name})
+      : _name = name,
+        super(key: key);
   _ChatListState createState() => _ChatListState();
 }
 
@@ -12,16 +15,16 @@ class _ChatListState extends State<ChatList> {
   bool titleOrSearch;
 
   List<String> list = [
-    "Chat 1",
-    "Chat 2",
-    "Chat 3",
-    "Chat 4",
-    "Chat 5",
-    "Chat 6",
-    "Chat 7",
-    "Chat 8",
-    "Chat 9",
-    "Chat 10"
+    "Conversation of all",
+    "Power Rangers",
+    "The Friendship Ship",
+    "The Chamber of Secrets",
+    "All the Single Ladies",
+    "Core Four",
+    "The River Vixens",
+    "The Avengers",
+    "Organization 13",
+    "Team Sev7n",
   ];
   List<String> listFilter = [];
   @override
@@ -42,7 +45,8 @@ class _ChatListState extends State<ChatList> {
                 onChanged: (value) {
                   setState(() {
                     listFilter = list
-                        .where((String text) => text.toLowerCase().contains(value.toLowerCase()))
+                        .where((String text) =>
+                            text.toLowerCase().contains(value.toLowerCase()))
                         .toList();
                   });
                 },
@@ -59,7 +63,8 @@ class _ChatListState extends State<ChatList> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CreateChat()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CreateChat()));
             },
           )
         ],
@@ -76,8 +81,8 @@ class _ChatListState extends State<ChatList> {
                 listFilter.removeAt(index);
               });
 
-              Scaffold.of(context).showSnackBar(
-                  SnackBar(content: Text("$item deleted")));
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("$item deleted")));
             },
             background: Container(
               color: Colors.red,
@@ -96,7 +101,13 @@ class _ChatListState extends State<ChatList> {
               title: Text("$item"),
               subtitle: Text("Message: help..."),
               onTap: () {
-                print("tap");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatPage(
+                              title: item,
+                              keyFire: index.toString(),
+                            )));
               },
             ),
           );
