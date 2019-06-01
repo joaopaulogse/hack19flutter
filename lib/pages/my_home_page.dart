@@ -13,7 +13,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
   ScrollController _scroll = new ScrollController();
 
-  var name = '';
+  String name = '';
 
   void dispose(){
     _scroll.dispose();
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
               currentForm.save();
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChatList()),
+                MaterialPageRoute(builder: (context) => ChatList(name: name)),
               );
             }
           },
