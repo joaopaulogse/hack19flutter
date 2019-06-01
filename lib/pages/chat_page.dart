@@ -57,8 +57,9 @@ class _ChatPageState extends State<ChatPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             RaisedButton(
+              child: const Text("language"),
               padding: EdgeInsets.only(right: 10),
-              color: Colors.green,
+              color: Colors.blueAccent,
               onPressed: (){},
             ),
             Flexible(
