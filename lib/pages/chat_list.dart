@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ChatList extends StatefulWidget {
-  ChatList({Key key}) : super(key: key);
+import 'create_chat.dart';
 
+class ChatList extends StatefulWidget {
+  String _name;
+  ChatList({Key key, String name}) : _name = name, super(key: key);
   _ChatListState createState() => _ChatListState();
 }
 
@@ -40,7 +42,7 @@ class _ChatListState extends State<ChatList> {
                 onChanged: (value) {
                   setState(() {
                     listFilter = list
-                        .where((String text) => text.contains(value))
+                        .where((String text) => text.toLowerCase().contains(value.toLowerCase()))
                         .toList();
                   });
                 },
@@ -56,7 +58,9 @@ class _ChatListState extends State<ChatList> {
           ),
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CreateChat()));
+            },
           )
         ],
       ),
