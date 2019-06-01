@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class CreateChat extends StatefulWidget {
   CreateChat({Key key}) : super(key: key);
@@ -10,6 +11,9 @@ class _CreateChatState extends State<CreateChat> {
   GlobalKey _formKey = GlobalKey<FormState>();
   final _nameChatController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final databaseReference = FirebaseDatabase.instance.reference();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +25,10 @@ class _CreateChatState extends State<CreateChat> {
             icon: Icon(Icons.send),
             tooltip: "add",
             onPressed: () {
+              databaseReference.child("rooms").push().set({
+                "name":_nameChatController.text,
+                "message": []
+              });
               _scaffoldKey.currentState.showSnackBar(
                   SnackBar(content: Text("Added")));
               Navigator.of(context).pop();
